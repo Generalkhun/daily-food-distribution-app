@@ -1,25 +1,27 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { ClassNames } from "@emotion/react";
+import { Grid, makeStyles, Paper } from "@material-ui/core";
+import React from "react";
+import MapWithHomeLocations from "./components/MapWithHomeLocations";
+import NavBar from "./components/NavBar";
 
+const useStyles = makeStyles({
+  mapContainer:{
+    height: '90vh'
+  }
+})
 function App() {
+  const classes = useStyles()
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Grid container>
+      <Grid item xs={12}>
+        <NavBar />
+      </Grid>
+      <Grid item xs={12} lg={9}>
+        <Paper className ={classes.mapContainer}>
+          <MapWithHomeLocations />
+        </Paper>
+      </Grid>
+    </Grid>
   );
 }
 
