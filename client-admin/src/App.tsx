@@ -5,19 +5,19 @@ import MapWithHomeLocations from "./components/MapWithHomeLocations";
 import NavBar from "./components/NavBar";
 
 const useStyles = makeStyles({
-  mapContainer:{
-    height: '90vh'
-  }
-})
+  mapContainer: {
+    height: "90vh",
+  },
+});
 function App() {
-  const classes = useStyles()
+  const classes = useStyles();
   return (
     <Grid container>
       <Grid item xs={12}>
         <NavBar />
       </Grid>
-      <Grid item xs={12} lg={9}>
-        <Paper className ={classes.mapContainer}>
+      <Grid item xs={12} style={{paddingTop:50}}>
+        <Paper className={classes.mapContainer}>
           <MapWithHomeLocations />
         </Paper>
       </Grid>
