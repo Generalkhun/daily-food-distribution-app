@@ -21,12 +21,20 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import React from "react";
 import clsx from "clsx";
-import { villagerHomeListData } from "../mockData";
+
 import VillagerHomeList from "./VillagerHomeList";
+import { VillagerHomeData } from "../type";
 
-interface Props {}
+interface Props {
+  open: boolean;
+  setOpen: any;
+  mapCenterLocation: [number, number];
+  villagerHomeListData: Array<VillagerHomeData>;
+  onClickVillager: (villager: VillagerHomeData) => void;
+  selectedVillagerInfo: any;
+}
 
-const drawerWidth = "30%";
+const drawerWidth = "20%";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     logoutButton: {
@@ -88,10 +96,17 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const NavBar = (props: Props) => {
+const Console = (props: Props) => {
+  const {
+    villagerHomeListData,
+    onClickVillager,
+    open,
+    setOpen,
+    selectedVillagerInfo,
+  } = props;
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
@@ -141,14 +156,15 @@ const NavBar = (props: Props) => {
         </div>
         <Divider />
         <List>
-          <VillagerHomeList villagerHomeListData={villagerHomeListData} />
+          <VillagerHomeList
+            villagerHomeListData={villagerHomeListData}
+            onClickVillager={onClickVillager}
+            selectedVillagerInfo={selectedVillagerInfo}
+          />
         </List>
       </Drawer>
     </div>
   );
 };
 
-export default NavBar;
-// function clsx(menuButton: string, arg1: any): string | undefined {
-//   throw new Error("Function not implemented.");
-// }
+export default Console;
