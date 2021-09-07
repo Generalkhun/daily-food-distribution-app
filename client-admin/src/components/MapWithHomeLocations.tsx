@@ -10,6 +10,7 @@ import {
 
 import { VillagerHomeData } from "../type";
 import "leaflet/dist/leaflet.css";
+import { Button, Link } from "@material-ui/core";
 interface Props {
   mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>;
@@ -66,22 +67,6 @@ const MapWithHomeLocations = (props: Props) => {
           mapCenterLocation
         );
         return (
-          // <>
-          // {isSameLocWithFocusLoc?<CircleMarker
-          //   key={index}
-          //   center={villager.homeLocation}
-          //   pathOptions={{ color: villager.isFoodRecieved ? "green" : "red" }}
-          //   radius={isSameLocWithFocusLoc? 10:5}
-          // >
-          // </CircleMarker>:<CircleMarker
-          //   key={index}
-          //   center={villager.homeLocation}
-          //   pathOptions={{ color: villager.isFoodRecieved ? "green" : "red" }}
-          //   radius={5}
-          // >
-          //   {/* <Popup>{villager.isFoodRecieved ? "ได้รับแล้ว" : "รออาหาร"}</Popup> */}
-          // </CircleMarker>}
-          // </>
           <CircleMarker
             key={index}
             center={villager.homeLocation}
@@ -90,7 +75,27 @@ const MapWithHomeLocations = (props: Props) => {
             eventHandlers={{
               click: (event) => handleClickLocation(event, villager),
             }}
-          ></CircleMarker>
+          >
+            <Popup>
+              <a
+                target="_blank"
+                rel="noopener noreferrer"
+                href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
+              >
+                ดูใน goole map
+              </a>
+              {/* <Link
+                href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
+                component=
+                variant="body1"
+                // onClick={() => {
+                //   console.info("I'm a button.");
+                // }}
+              >
+                
+              </Link> */}
+            </Popup>
+          </CircleMarker>
         );
       })}
     </MapContainer>
