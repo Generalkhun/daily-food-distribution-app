@@ -13,22 +13,22 @@ const useStyles = makeStyles({
 });
 function App() {
   const classes = useStyles();
+  const [drawerOpen, setDrawerOpen] = useState(false);
   const [mapCenterLocation, setMapCenterLocation] = useState<[number, number]>([
     13.684634695264908, 100.47727857693796,
   ]);
-  const [focusMarkerLocation, setFocusMarkerLocation] = useState<
-    [number, number]
-  >([13.684634695264908, 100.47727857693796]);
   const onClickVillager = (villager: VillagerHomeData) => {
     console.log("villager", villager);
 
     setMapCenterLocation(villager.homeLocation);
-    setFocusMarkerLocation(villager.homeLocation);
   };
   return (
     <Grid container>
       <Grid item xs={12}>
         <Console
+          open={drawerOpen}
+          setOpen={setDrawerOpen}
+          mapCenterLocation={mapCenterLocation}
           villagerHomeListData={villagerHomeListData}
           onClickVillager={onClickVillager}
         />
@@ -36,6 +36,7 @@ function App() {
       <Grid item xs={12} style={{ paddingTop: 80 }}>
         <Paper className={classes.mapContainer}>
           <MapWithHomeLocations
+            setDrawerOpen={setDrawerOpen}
             mapCenterLocation={mapCenterLocation}
             villagerHomeListData={villagerHomeListData}
             onClickVillager={onClickVillager}

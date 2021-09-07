@@ -12,6 +12,7 @@ import { VillagerHomeData } from "../type";
 import "leaflet/dist/leaflet.css";
 import { Button, Link } from "@material-ui/core";
 interface Props {
+  setDrawerOpen:any
   mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
@@ -33,10 +34,11 @@ const MapWithHomeLocations = (props: Props) => {
     return null;
   }
 
-  const { mapCenterLocation, villagerHomeListData, onClickVillager } = props;
+  const { mapCenterLocation, villagerHomeListData, onClickVillager,setDrawerOpen } = props;
   const handleClickLocation = (event: any, villager: VillagerHomeData) => {
     console.log("this is", villager);
     onClickVillager(villager);
+    setDrawerOpen(true)
   };
   return (
     <MapContainer

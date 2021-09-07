@@ -26,6 +26,9 @@ import VillagerHomeList from "./VillagerHomeList";
 import { VillagerHomeData } from "../type";
 
 interface Props {
+  open:boolean
+  setOpen:any
+  mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>
   onClickVillager: (villager:VillagerHomeData) => void
 }
@@ -93,10 +96,10 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 const Console = (props: Props) => {
-  const {villagerHomeListData,onClickVillager} = props
+  const {villagerHomeListData,onClickVillager,open,setOpen} = props
   const classes = useStyles();
   const theme = useTheme();
-  const [open, setOpen] = React.useState(false);
+  //const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
