@@ -17,13 +17,16 @@ import {
   ListItemText,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
+import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import React from "react";
 import clsx from "clsx";
+import { villagerHomeListData } from "../mockData";
+import VillagerHomeList from "./VillagerHomeList";
 
 interface Props {}
 
-const drawerWidth = '30%';
+const drawerWidth = "30%";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     logoutButton: {
@@ -133,30 +136,12 @@ const NavBar = (props: Props) => {
       >
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
-            {theme.direction === "ltr" ? <HomeIcon /> : <HomeIcon />}
+            {theme.direction === "ltr" ? <ChevronLeftIcon /> : <HomeIcon />}
           </IconButton>
         </div>
         <Divider />
         <List>
-          {["Inbox", "Starred", "Send email", "Drafts"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <HomeIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
-        </List>
-        <Divider />
-        <List>
-          {["All mail", "Trash", "Spam"].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>
-                {index % 2 === 0 ? <HomeIcon /> : <HomeIcon />}
-              </ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <VillagerHomeList villagerHomeListData={villagerHomeListData} />
         </List>
       </Drawer>
     </div>
