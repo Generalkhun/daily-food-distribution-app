@@ -1,9 +1,8 @@
 import { ClassNames } from "@emotion/react";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
 import React from "react";
-import { MapDisplay } from "./components/MapDisplay";
 import MapWithHomeLocations from "./components/MapWithHomeLocations";
-import NavBar from "./components/NavBar";
+import Console from "./components/Console";
 
 const useStyles = makeStyles({
   mapContainer: {
@@ -15,12 +14,11 @@ function App() {
   return (
     <Grid container>
       <Grid item xs={12}>
-        <NavBar />
+        <Console />
       </Grid>
       <Grid item xs={12} style={{paddingTop:80}}>
         <Paper className={classes.mapContainer}>
-          <MapDisplay/>
-          {/* <MapWithHomeLocations /> */}
+          <MapWithHomeLocations />
         </Paper>
       </Grid>
     </Grid>

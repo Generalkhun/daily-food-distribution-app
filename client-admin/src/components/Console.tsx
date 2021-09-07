@@ -26,7 +26,7 @@ import VillagerHomeList from "./VillagerHomeList";
 
 interface Props {}
 
-const drawerWidth = "30%";
+const drawerWidth = "20%";
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     logoutButton: {
@@ -88,7 +88,7 @@ const useStyles = makeStyles((theme: Theme) =>
     },
   })
 );
-const NavBar = (props: Props) => {
+const Console = (props: Props) => {
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -148,7 +148,7 @@ const NavBar = (props: Props) => {
   );
 };
 
-export default NavBar;
+export default Console;
 // function clsx(menuButton: string, arg1: any): string | undefined {
 //   throw new Error("Function not implemented.");
 // }

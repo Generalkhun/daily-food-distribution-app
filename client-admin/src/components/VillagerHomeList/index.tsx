@@ -1,6 +1,7 @@
-import { ListItem, ListItemIcon, ListItemText } from "@material-ui/core";
+import { ListItem, ListItemIcon, ListItemText, Avatar } from "@material-ui/core";
 import React from "react";
 import { VillagerHomeData } from "../../type";
+import VillagerHome from "./components/VillagerHome";
 
 interface Props {
   villagerHomeListData: Array<VillagerHomeData>;
@@ -14,10 +15,13 @@ const VillagerHomeList = (props: Props) => {
     <>
       {villagerHomeListData.map((villagerHomeData: VillagerHomeData, index) => (
         <ListItem button key={villagerHomeData.homeId}>
-          {/* <ListItemIcon>
-            {index % 2 === 0 ? <HomeIcon /> : <HomeIcon />}
-          </ListItemIcon> */}
-          <ListItemText primary={villagerHomeData.homeRepresentativesName} />
+            <VillagerHome
+                key={index}
+                personName={villagerHomeData.homeRepresentativesName}
+                foodRecieveStatus={villagerHomeData.isFoodRecieved}
+                personImgUrl={villagerHomeData.homeRepresentativesImg}
+            />
+        
         </ListItem>
       ))}
     </>
