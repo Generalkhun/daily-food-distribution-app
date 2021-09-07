@@ -17,9 +17,10 @@ function App() {
   const [mapCenterLocation, setMapCenterLocation] = useState<[number, number]>([
     13.684634695264908, 100.47727857693796,
   ]);
+  const [selectedVillagerInfo, setSelectedVillagerInfo] = useState({});
   const onClickVillager = (villager: VillagerHomeData) => {
     console.log("villager", villager);
-
+    setSelectedVillagerInfo(villager);
     setMapCenterLocation(villager.homeLocation);
   };
   return (
@@ -31,6 +32,7 @@ function App() {
           mapCenterLocation={mapCenterLocation}
           villagerHomeListData={villagerHomeListData}
           onClickVillager={onClickVillager}
+          selectedVillagerInfo={selectedVillagerInfo}
         />
       </Grid>
       <Grid item xs={12} style={{ paddingTop: 80 }}>

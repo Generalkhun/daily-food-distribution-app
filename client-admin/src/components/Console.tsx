@@ -26,11 +26,12 @@ import VillagerHomeList from "./VillagerHomeList";
 import { VillagerHomeData } from "../type";
 
 interface Props {
-  open:boolean
-  setOpen:any
+  open: boolean;
+  setOpen: any;
   mapCenterLocation: [number, number];
-  villagerHomeListData: Array<VillagerHomeData>
-  onClickVillager: (villager:VillagerHomeData) => void
+  villagerHomeListData: Array<VillagerHomeData>;
+  onClickVillager: (villager: VillagerHomeData) => void;
+  selectedVillagerInfo: any;
 }
 
 const drawerWidth = "20%";
@@ -96,7 +97,13 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 const Console = (props: Props) => {
-  const {villagerHomeListData,onClickVillager,open,setOpen} = props
+  const {
+    villagerHomeListData,
+    onClickVillager,
+    open,
+    setOpen,
+    selectedVillagerInfo,
+  } = props;
   const classes = useStyles();
   const theme = useTheme();
   //const [open, setOpen] = React.useState(false);
@@ -149,7 +156,11 @@ const Console = (props: Props) => {
         </div>
         <Divider />
         <List>
-          <VillagerHomeList villagerHomeListData={villagerHomeListData} onClickVillager={onClickVillager}/>
+          <VillagerHomeList
+            villagerHomeListData={villagerHomeListData}
+            onClickVillager={onClickVillager}
+            selectedVillagerInfo={selectedVillagerInfo}
+          />
         </List>
       </Drawer>
     </div>
