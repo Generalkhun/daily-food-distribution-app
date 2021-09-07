@@ -5,21 +5,23 @@ import VillagerHome from "./components/VillagerHome";
 
 interface Props {
   villagerHomeListData: Array<VillagerHomeData>;
+  onClickVillager: (villager:VillagerHomeData) => void
 }
 
 const VillagerHomeList = (props: Props) => {
-  const { villagerHomeListData } = props;
+  const { villagerHomeListData ,onClickVillager} = props;
   console.log("villagerHomeListData", villagerHomeListData);
 
   return (
     <>
       {villagerHomeListData.map((villagerHomeData: VillagerHomeData, index) => (
-        <ListItem button key={villagerHomeData.homeId}>
+        <ListItem button key={villagerHomeData.homeId} onClick={() => onClickVillager(villagerHomeData)}>
             <VillagerHome
                 key={index}
                 personName={villagerHomeData.homeRepresentativesName}
                 foodRecieveStatus={villagerHomeData.isFoodRecieved}
                 personImgUrl={villagerHomeData.homeRepresentativesImg}
+                onClickVillager={onClickVillager}
             />
         
         </ListItem>

@@ -21,10 +21,14 @@ import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
 
 import React from "react";
 import clsx from "clsx";
-import { villagerHomeListData } from "../mockData";
-import VillagerHomeList from "./VillagerHomeList";
 
-interface Props {}
+import VillagerHomeList from "./VillagerHomeList";
+import { VillagerHomeData } from "../type";
+
+interface Props {
+  villagerHomeListData: Array<VillagerHomeData>
+  onClickVillager: (villager:VillagerHomeData) => void
+}
 
 const drawerWidth = "20%";
 const useStyles = makeStyles((theme: Theme) =>
@@ -89,6 +93,7 @@ const useStyles = makeStyles((theme: Theme) =>
   })
 );
 const Console = (props: Props) => {
+  const {villagerHomeListData,onClickVillager} = props
   const classes = useStyles();
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
@@ -141,7 +146,7 @@ const Console = (props: Props) => {
         </div>
         <Divider />
         <List>
-          <VillagerHomeList villagerHomeListData={villagerHomeListData} />
+          <VillagerHomeList villagerHomeListData={villagerHomeListData} onClickVillager={onClickVillager}/>
         </List>
       </Drawer>
     </div>
@@ -149,6 +154,3 @@ const Console = (props: Props) => {
 };
 
 export default Console;
-// function clsx(menuButton: string, arg1: any): string | undefined {
-//   throw new Error("Function not implemented.");
-// }
