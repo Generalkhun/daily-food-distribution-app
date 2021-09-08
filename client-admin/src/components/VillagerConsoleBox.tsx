@@ -8,7 +8,7 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { VillagerHomeData } from "../type";
-import { Divider, FormControlLabel, Switch } from "@material-ui/core";
+import { Divider, FormControlLabel, Grid, Switch } from "@material-ui/core";
 import ModalConfirmStatusChange from "./ModalConfirmStatusChange";
 
 const useStyles = makeStyles({
@@ -82,32 +82,51 @@ export default function VillagerConsoleBox(props: Props) {
             </Typography>
           </CardContent>
         </CardActionArea>
+        <Divider />
         <CardActions>
-          <Button size="small" color="primary">
-            <a
-              target="_blank"
-              rel="noopener noreferrer"
-              href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
-            >
-              ดูเส้นทางจาก goole map
-            </a>
-          </Button>
-          <Button size="small" color="primary">
-            <img
-              width="40"
-              height="20"
-              src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
-            />
-            {"ติดต่อไลน์ >"}
-          </Button>
+          <Grid container>
+            <Grid item xs={12} lg={6} style={{ paddingLeft: 10 }}>
+              <Button size="small" color="primary" variant="outlined" fullWidth>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
+                >
+                  <img
+                    width="50"
+                    height="40"
+                    src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/bd/Google_Maps_Logo_2020.svg/512px-Google_Maps_Logo_2020.svg.png"
+                  />
+                </a>
+              </Button>
+            </Grid>
+            <Grid item xs={12} lg={6} style={{ paddingLeft: 10 }}>
+              <Button size="small" color="primary" variant="outlined" fullWidth>
+                <img
+                  width="40"
+                  height="47"
+                  src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
+                />
+              </Button>
+            </Grid>
+          </Grid>
         </CardActions>
         <CardActions>
-          <FormControlLabel
+          {/* <FormControlLabel
             control={
               <Switch checked={isGetFood} onChange={toggleGetFoodStatus} />
             }
             label="ส่งสำเร็จแล้ว"
-          />
+          /> */}
+          <Button
+            onClick={toggleGetFoodStatus}
+            fullWidth
+            disabled={selectedVillagerInfo.isFoodRecieved}
+            variant="contained"
+            color={selectedVillagerInfo.isFoodRecieved ? undefined : "primary"}
+          >
+            ส่งสำเร็จแล้ว
+          </Button>
         </CardActions>
       </Card>
     </>

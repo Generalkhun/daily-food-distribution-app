@@ -6,6 +6,8 @@ import { StyledBadgeUrgent } from "./StyledBadgeUrgent";
 import { StyledBadgeNormal } from "./StyledBadgeNormal";
 import { VillagerHomeData } from "../../../type";
 
+import PeopleIcon from '@material-ui/icons/People';
+
 interface Props {
   key: number;
   personName: string;
@@ -61,7 +63,8 @@ function VillagerHome(props: Props) {
         )}
       </Grid>
       <Grid item xs={12} lg={9}>
-        <ListItemText primary={personName} secondary={""+numberOfFamilyMembers} style={{ paddingLeft: 20 }} />
+        
+        <ListItemText primary={personName} secondary={""+numberOfFamilyMembers+" คน"} style={{ paddingLeft: 20 }} />
       </Grid>
     </Grid>
   );
