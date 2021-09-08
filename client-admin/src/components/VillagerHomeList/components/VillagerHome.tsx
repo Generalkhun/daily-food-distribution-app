@@ -11,23 +11,23 @@ interface Props {
   personName: string;
   foodRecieveStatus: boolean;
   personImgUrl: string;
-  onClickVillager: (villager: VillagerHomeData) => void;
+  numberOfFamilyMembers:number
 }
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
-    large: {
+    avatarSizeLarge: {
       width: theme.spacing(7),
       height: theme.spacing(7),
     },
   });
 });
 function VillagerHome(props: Props) {
-  const { personName, foodRecieveStatus, personImgUrl, onClickVillager } =
+  const { personName, foodRecieveStatus, personImgUrl ,numberOfFamilyMembers} =
     props;
   const classes = useStyles();
   return (
     <Grid container>
-      <Grid item xs={12} lg={4}>
+      <Grid item xs={12} lg={3}>
         {foodRecieveStatus ? (
           <StyledBadgeNormal
             overlap="circular"
@@ -40,7 +40,7 @@ function VillagerHome(props: Props) {
             <Avatar
               alt={personName}
               src={personImgUrl}
-              className={classes.large}
+              className={classes.avatarSizeLarge}
             />
           </StyledBadgeNormal>
         ) : (
@@ -55,13 +55,13 @@ function VillagerHome(props: Props) {
             <Avatar
               alt={personName}
               src={personImgUrl}
-              className={classes.large}
+              className={classes.avatarSizeLarge}
             />
           </StyledBadgeUrgent>
         )}
       </Grid>
-      <Grid item xs={12} lg={4}>
-        <ListItemText primary={personName} style={{ paddingLeft: 20 }} />
+      <Grid item xs={12} lg={9}>
+        <ListItemText primary={personName} secondary={""+numberOfFamilyMembers} style={{ paddingLeft: 20 }} />
       </Grid>
     </Grid>
   );

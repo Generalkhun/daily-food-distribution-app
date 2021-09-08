@@ -32,7 +32,7 @@ const VillagerHomeList = (props: Props) => {
             personName={villagerHomeData.homeRepresentativesName}
             foodRecieveStatus={villagerHomeData.isFoodRecieved}
             personImgUrl={villagerHomeData.homeRepresentativesImg}
-            onClickVillager={onClickVillager}
+            numberOfFamilyMembers={villagerHomeData.numberOfFamilyMember}
           />
         </ListItem>
       ))}

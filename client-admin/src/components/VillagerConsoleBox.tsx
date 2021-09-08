@@ -13,10 +13,10 @@ import ModalConfirmStatusChange from "./ModalConfirmStatusChange";
 
 const useStyles = makeStyles({
   root: {
-    maxWidth: 345,
+    maxWidth: 425,
   },
   media: {
-    height: 140,
+    height: 200,
   },
 });
 interface Props {
@@ -57,7 +57,7 @@ export default function VillagerConsoleBox(props: Props) {
           <CardMedia
             className={classes.media}
             image={selectedVillagerInfo.homeRepresentativesImg}
-            title="Contemplative Reptile"
+            title="ข้อมูลตัวแทนบ้าน"
           />
           <CardContent>
             <Typography gutterBottom variant="h5" component="h2">

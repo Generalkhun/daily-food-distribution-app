@@ -35,7 +35,7 @@ interface Props {
   setOpenVillagerConsole:any
 }
 
-const drawerWidth = "20%";
+const drawerWidth = '20%';
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     logoutButton: {
@@ -118,6 +118,7 @@ const Console = (props: Props) => {
 
   const handleDrawerClose = () => {
     setOpen(false);
+    setOpenVillagerConsole(false)
   };
   return (
     <div className={classes.root}>

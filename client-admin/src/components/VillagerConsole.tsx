@@ -25,7 +25,7 @@ interface Props {
   selectedVillagerInfo: VillagerHomeData;
 }
 
-const drawerWidth = "40%";
+const drawerWidth = "60%"
 const useStyles = makeStyles((theme: Theme) =>
   createStyles({
     menuButton: {
@@ -99,7 +99,7 @@ const VillagerConsole = (props: Props) => {
       >
         <Toolbar />s
         <Grid container>
-          <Grid item xs={6}></Grid>
+          <Grid item xs={5}></Grid>
           <Grid item xs={6} className={classes.villagerInfoBox}>
           <VillagerConsoleBox
             selectedVillagerInfo={selectedVillagerInfo}
