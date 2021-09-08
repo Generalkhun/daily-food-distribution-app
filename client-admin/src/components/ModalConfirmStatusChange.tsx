@@ -46,9 +46,9 @@ export default function ModalConfirmStatusChange(props: Props) {
     >
       <Fade in={isOpenModal}>
         <div className={classes.paper}>
-          <h2 id="transition-modal-title">ยืนยันการแก้ไขสถานะ</h2>
+          <h2 id="transition-modal-title">ยืนยันการส่งข้าวสำเร็จ</h2>
           <p id="transition-modal-description">
-            หากแน่ใจว่าสถานะการรับข้าวของบ้านนี้เปลี่ยนไปแล้ว ให้กดยืนยัน
+            หากแน่ใจว่าส่งข้าวสำเร็จแล้ว ให้กดยืนยัน
           </p>
           <Button>
               ยืนยัน
