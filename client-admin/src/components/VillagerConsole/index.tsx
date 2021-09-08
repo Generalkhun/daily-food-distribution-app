@@ -68,7 +68,6 @@ import VillagerConsoleBox from "./components/VillagerConsoleBox";
       },
       villagerInfoBox: {
           paddingTop: 20,
-          paddingLeft: 20
       }
     })
   );
