@@ -25,6 +25,8 @@ interface Props {
 export default function VillagerConsoleBox(props: Props) {
   const classes = useStyles();
   const { selectedVillagerInfo } = props;
+  const lat = (selectedVillagerInfo.homeLocation||[0,0])[0]
+  const lng = (selectedVillagerInfo.homeLocation||[0,0])[1]
   return (
     <Card className={classes.root}>
       <CardActionArea>
@@ -61,18 +63,18 @@ export default function VillagerConsoleBox(props: Props) {
           <a
             target="_blank"
             rel="noopener noreferrer"
-            href={`https://www.google.com/maps/search/?api=1&query=${selectedVillagerInfo.homeLocation[0]},${selectedVillagerInfo.homeLocation[1]}`}
+            href={`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`}
           >
             ดูเส้นทางจาก goole map
           </a>
         </Button>
         <Button size="small" color="primary">
           <img
-            width="50"
+            width="40"
             height="20"
             src="https://upload.wikimedia.org/wikipedia/commons/4/41/LINE_logo.svg"
           />
-          {"ติดต่อไลน์"}
+          {"ติดต่อไลน์ >"}
         </Button>
       </CardActions>
     </Card>

@@ -84,7 +84,7 @@ const MapWithHomeLocations = (props: Props) => {
             }}
           >
             <Popup>
-              <Button size="small" color="secondary" variant='outlined'>
+              <Button size="small" color={villager.isFoodRecieved ? "primary":"secondary"} variant='outlined'>
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
