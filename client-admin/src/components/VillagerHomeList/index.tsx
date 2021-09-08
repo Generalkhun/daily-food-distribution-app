@@ -9,32 +9,43 @@ import { VillagerHomeData } from "../../type";
 import VillagerHome from "./components/VillagerHome";
 
 interface Props {
+  isShowOnlyWaitingVillager: boolean;
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
-  selectedVillagerInfo:any
+  selectedVillagerInfo: any;
 }
 
 const VillagerHomeList = (props: Props) => {
-  const { villagerHomeListData, onClickVillager ,selectedVillagerInfo} = props;
-  console.log("villagerHomeListData", villagerHomeListData);
+  const {
+    villagerHomeListData,
+    onClickVillager,
+    selectedVillagerInfo,
+    isShowOnlyWaitingVillager,
+  } = props;
 
   return (
     <>
       {villagerHomeListData.map((villagerHomeData: VillagerHomeData, index) => (
-        <ListItem
-          button
-          key={villagerHomeData.homeId}
-          onClick={() => onClickVillager(villagerHomeData)}
-          selected={selectedVillagerInfo.homeId === villagerHomeData.homeId}
-        >
-          <VillagerHome
-            key={index}
-            personName={villagerHomeData.homeRepresentativesName}
-            foodRecieveStatus={villagerHomeData.isFoodRecieved}
-            personImgUrl={villagerHomeData.homeRepresentativesImg}
-            numberOfFamilyMembers={villagerHomeData.numberOfFamilyMember}
-          />
-        </ListItem>
+        <>
+          {!(isShowOnlyWaitingVillager && villagerHomeData.isFoodRecieved) ? (
+            <ListItem
+              button
+              key={villagerHomeData.homeId}
+              onClick={() => onClickVillager(villagerHomeData)}
+              selected={selectedVillagerInfo.homeId === villagerHomeData.homeId}
+            >
+              <VillagerHome
+                key={index}
+                personName={villagerHomeData.homeRepresentativesName}
+                foodRecieveStatus={villagerHomeData.isFoodRecieved}
+                personImgUrl={villagerHomeData.homeRepresentativesImg}
+                numberOfFamilyMembers={villagerHomeData.numberOfFamilyMember}
+              />
+            </ListItem>
+          ) : (
+            <></>
+          )}
+        </>
       ))}
     </>
     // {villagerHomeListData.map((villagerHomeData:VillagerHomeData, index) => (

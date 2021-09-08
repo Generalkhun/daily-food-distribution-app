@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   AppBar,
   Toolbar,
@@ -12,18 +13,17 @@ import {
   Drawer,
   Divider,
   List,
-  ListItem,
-  ListItemIcon,
-  ListItemText,
+  Checkbox,
+  FormControlLabel,
 } from "@material-ui/core";
 import HomeIcon from "@material-ui/icons/Home";
 import ChevronLeftIcon from "@material-ui/icons/ChevronLeft";
-
-import React from "react";
+import SettingsIcon from "@material-ui/icons/Settings";
 import clsx from "clsx";
 
-import VillagerHomeList from "./VillagerHomeList";
-import { VillagerHomeData } from "../type";
+import VillagerHomeList from "../VillagerHomeList";
+import { VillagerHomeData } from "../../type";
+import { appConsoleStyles } from "./styles";
 
 interface Props {
   open: boolean;
@@ -32,94 +32,36 @@ interface Props {
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
   selectedVillagerInfo: VillagerHomeData;
-  setOpenVillagerConsole:any
+  setOpenVillagerConsole: any;
+  isShowOnlyWaitingVillager: boolean;
+  handleOpenModalSetting: () => void;
 }
 
-const drawerWidth = '20%';
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    logoutButton: {
-      marginLeft: "auto",
-    },
-    menuButton: {
-      marginRight: theme.spacing(2),
-    },
-    hide: {
-      display: "none",
-    },
-    root: {
-      display: "flex",
-    },
-    appBar: {
-      transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      zIndex: theme.zIndex.drawer + 1,
-    },
-    appBarShift: {
-      width: `calc(100% - ${drawerWidth}px)`,
-      marginLeft: drawerWidth,
-      transition: theme.transitions.create(["margin", "width"], {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-    },
-    drawer: {
-      width: drawerWidth,
-      flexShrink: 0,
-    },
-    drawerPaper: {
-      width: drawerWidth,
-    },
-    drawerHeader: {
-      display: "flex",
-      alignItems: "center",
-      padding: theme.spacing(0, 1),
-      // necessary for content to be below app bar
-      ...theme.mixins.toolbar,
-      justifyContent: "flex-end",
-    },
-    content: {
-      flexGrow: 1,
-      padding: theme.spacing(3),
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.sharp,
-        duration: theme.transitions.duration.leavingScreen,
-      }),
-      marginLeft: -drawerWidth,
-    },
-    contentShift: {
-      transition: theme.transitions.create("margin", {
-        easing: theme.transitions.easing.easeOut,
-        duration: theme.transitions.duration.enteringScreen,
-      }),
-      marginLeft: 0,
-    },
-  })
-);
-const Console = (props: Props) => {
+
+const useStyles = appConsoleStyles
+const AppConsole = (props: Props) => {
   const {
     villagerHomeListData,
     onClickVillager,
     open,
     setOpen,
     selectedVillagerInfo,
-    setOpenVillagerConsole
+    setOpenVillagerConsole,
+    isShowOnlyWaitingVillager,
+    handleOpenModalSetting
   } = props;
   const classes = useStyles();
   const theme = useTheme();
-  //const [open, setOpen] = React.useState(false);
 
   const handleDrawerOpen = () => {
     setOpen(true);
-    setOpenVillagerConsole(true)
   };
 
   const handleDrawerClose = () => {
     setOpen(false);
-    setOpenVillagerConsole(false)
+    setOpenVillagerConsole(false);
   };
+
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -140,6 +82,13 @@ const Console = (props: Props) => {
             <HomeIcon />
           </IconButton>
           <Typography variant="h6">ส่งข้าวเข้าบ้าน</Typography>
+
+          {/* Setting modal open */}
+          <IconButton onClick={handleOpenModalSetting}>
+            <SettingsIcon />
+          </IconButton>
+
+          {/* Logout */}
           <Button color="inherit" className={classes.logoutButton}>
             ออกจากระบบ
           </Button>
@@ -164,6 +113,7 @@ const Console = (props: Props) => {
         <Divider />
         <List>
           <VillagerHomeList
+            isShowOnlyWaitingVillager={isShowOnlyWaitingVillager}
             villagerHomeListData={villagerHomeListData}
             onClickVillager={onClickVillager}
             selectedVillagerInfo={selectedVillagerInfo}
@@ -174,4 +124,4 @@ const Console = (props: Props) => {
   );
 };
 
-export default Console;
+export default AppConsole;

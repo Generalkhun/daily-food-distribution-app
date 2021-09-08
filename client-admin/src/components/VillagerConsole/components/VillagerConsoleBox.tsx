@@ -18,6 +18,11 @@ const useStyles = makeStyles({
   media: {
     height: 200,
   },
+  contactButton: {
+    paddingLeft: 10,
+    paddingRight: 10,
+    paddingTop: 10,
+  },
 });
 interface Props {
   selectedVillagerInfo: VillagerHomeData;
@@ -85,7 +90,7 @@ export default function VillagerConsoleBox(props: Props) {
         <Divider />
         <CardActions>
           <Grid container>
-            <Grid item xs={12} lg={6} style={{ paddingLeft: 10 }}>
+            <Grid item xs={12} lg={6} className={classes.contactButton}>
               <Button size="small" color="primary" variant="outlined" fullWidth>
                 <a
                   target="_blank"
@@ -100,7 +105,7 @@ export default function VillagerConsoleBox(props: Props) {
                 </a>
               </Button>
             </Grid>
-            <Grid item xs={12} lg={6} style={{ paddingLeft: 10 }}>
+            <Grid item xs={12} lg={6} className={classes.contactButton}>
               <Button size="small" color="primary" variant="outlined" fullWidth>
                 <img
                   width="40"

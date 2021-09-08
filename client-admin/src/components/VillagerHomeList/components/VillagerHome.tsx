@@ -6,14 +6,14 @@ import { StyledBadgeUrgent } from "./StyledBadgeUrgent";
 import { StyledBadgeNormal } from "./StyledBadgeNormal";
 import { VillagerHomeData } from "../../../type";
 
-import PeopleIcon from '@material-ui/icons/People';
+import PeopleIcon from "@material-ui/icons/People";
 
 interface Props {
   key: number;
   personName: string;
   foodRecieveStatus: boolean;
   personImgUrl: string;
-  numberOfFamilyMembers:number
+  numberOfFamilyMembers: number;
 }
 const useStyles = makeStyles((theme: Theme) => {
   return createStyles({
@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme: Theme) => {
   });
 });
 function VillagerHome(props: Props) {
-  const { personName, foodRecieveStatus, personImgUrl ,numberOfFamilyMembers} =
+  const { personName, foodRecieveStatus, personImgUrl, numberOfFamilyMembers } =
     props;
   const classes = useStyles();
   return (
@@ -63,8 +63,10 @@ function VillagerHome(props: Props) {
         )}
       </Grid>
       <Grid item xs={12} lg={9}>
-        
-        <ListItemText primary={personName} secondary={""+numberOfFamilyMembers+" คน"} style={{ paddingLeft: 20 }} />
+        <ListItemText
+          //primary={personName} secondary={""+numberOfFamilyMembers+" คน"}
+          style={{ paddingLeft: 20 }}
+        />
       </Grid>
     </Grid>
   );
