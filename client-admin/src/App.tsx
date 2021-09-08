@@ -1,6 +1,6 @@
 import { ClassNames } from "@emotion/react";
 import { Grid, makeStyles, Paper } from "@material-ui/core";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import MapWithHomeLocations from "./components/MapWithHomeLocations";
 import AppConsole from "./components/AppConsole";
 import { villagerHomeListData } from "./mockData";
@@ -14,8 +14,6 @@ const useStyles = makeStyles({
   },
 });
 function App() {
-  const classes = useStyles();
-
   /**
    * Component states
    */
@@ -30,27 +28,33 @@ function App() {
     useState(false);
 
   const [isOpenModalSetting, setIsOpenModalSetting] = useState(false);
-  
+  const [map, setMap] = useState(null as any);
   /**
-   * Functions 
+   * Hooks
+   */
+  const classes = useStyles();
+
+  /**
+   * Functions
    */
   const changeShowConditionHandler = () => {
     setIsShowOnlyWaitingVillager((prev) => !prev);
-    setOpenVillagerConsole(false)
-
+    setOpenVillagerConsole(false);
   };
   const onClickVillager = (villager: VillagerHomeData) => {
     setSelectedVillagerInfo(villager);
     setOpenVillagerConsole(true);
     setMapCenterLocation(villager.homeLocation);
-  };
-  const handleCloseModalSetting = ()  => {
-    setIsOpenModalSetting(false)
-  }
 
-  const handleOpenModalSetting = ()  => {
-    setIsOpenModalSetting(true)
-  }
+    map && map.closePopup();
+  };
+  const handleCloseModalSetting = () => {
+    setIsOpenModalSetting(false);
+  };
+
+  const handleOpenModalSetting = () => {
+    setIsOpenModalSetting(true);
+  };
 
   return (
     <>
@@ -91,6 +95,7 @@ function App() {
               mapCenterLocation={mapCenterLocation}
               villagerHomeListData={villagerHomeListData}
               onClickVillager={onClickVillager}
+              setMap={setMap}
             />
           </Paper>
         </Grid>

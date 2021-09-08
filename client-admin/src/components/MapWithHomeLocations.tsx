@@ -6,6 +6,7 @@ import {
   Popup,
   useMap,
   CircleMarker,
+  useMapEvents,
 } from "react-leaflet";
 
 import { VillagerHomeData } from "../type";
@@ -16,6 +17,7 @@ interface Props {
   mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
+  setMap:any
 }
 const compareLatLng = (
   latlngA: [number, number],
@@ -31,6 +33,7 @@ const MapWithHomeLocations = (props: Props) => {
   function ChangeView({ center, zoom }: any) {
     const map = useMap();
     map.setView(center, zoom);
+    map.panTo([center[0]+0.00101,center[1]-0.00101])
     return null;
   }
 
@@ -39,6 +42,7 @@ const MapWithHomeLocations = (props: Props) => {
     villagerHomeListData,
     onClickVillager,
     setDrawerOpen,
+    setMap,
   } = props;
   const handleClickLocation = (event: any, villager: VillagerHomeData) => {
     console.log("this is", villager);
@@ -51,6 +55,7 @@ const MapWithHomeLocations = (props: Props) => {
       center={mapCenterLocation}
       zoom={18}
       scrollWheelZoom={true}
+      whenCreated={setMap}
     >
       <ChangeView center={mapCenterLocation} zoom={18} />
       {/* Map Tiles */}
@@ -80,17 +85,21 @@ const MapWithHomeLocations = (props: Props) => {
             pathOptions={{ color: villager.isFoodRecieved ? "green" : "red" }}
             radius={isSameLocWithFocusLoc ? 12 : 5}
             eventHandlers={{
-              click: (event) => handleClickLocation(event, villager),
+              mousedown: (event) => handleClickLocation(event, villager),
             }}
           >
             <Popup>
-              <Button size="small" color={villager.isFoodRecieved ? "primary":"secondary"} variant='outlined'>
+              <Button
+                size="small"
+                color={villager.isFoodRecieved ? "primary" : "secondary"}
+                variant="outlined"
+              >
                 <a
                   target="_blank"
                   rel="noopener noreferrer"
                   href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
                 >
-                  {'ดูใน goole map >'}
+                  {"ดูใน goole map"}
                 </a>
               </Button>
 
