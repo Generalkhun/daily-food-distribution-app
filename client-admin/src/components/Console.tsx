@@ -31,7 +31,8 @@ interface Props {
   mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
-  selectedVillagerInfo: any;
+  selectedVillagerInfo: VillagerHomeData;
+  setOpenVillagerConsole:any
 }
 
 const drawerWidth = "20%";
@@ -54,6 +55,7 @@ const useStyles = makeStyles((theme: Theme) =>
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      zIndex: theme.zIndex.drawer + 1,
     },
     appBarShift: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -103,6 +105,7 @@ const Console = (props: Props) => {
     open,
     setOpen,
     selectedVillagerInfo,
+    setOpenVillagerConsole
   } = props;
   const classes = useStyles();
   const theme = useTheme();
@@ -110,6 +113,7 @@ const Console = (props: Props) => {
 
   const handleDrawerOpen = () => {
     setOpen(true);
+    setOpenVillagerConsole(true)
   };
 
   const handleDrawerClose = () => {
@@ -140,6 +144,7 @@ const Console = (props: Props) => {
           </Button>
         </Toolbar>
       </AppBar>
+      {/* Villager data list display */}
       <Drawer
         className={classes.drawer}
         variant="persistent"
@@ -149,6 +154,7 @@ const Console = (props: Props) => {
           paper: classes.drawerPaper,
         }}
       >
+        <Toolbar />
         <div className={classes.drawerHeader}>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "ltr" ? <ChevronLeftIcon /> : <HomeIcon />}

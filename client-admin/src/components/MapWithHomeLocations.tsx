@@ -12,7 +12,7 @@ import { VillagerHomeData } from "../type";
 import "leaflet/dist/leaflet.css";
 import { Button, Link } from "@material-ui/core";
 interface Props {
-  setDrawerOpen:any
+  setDrawerOpen: any;
   mapCenterLocation: [number, number];
   villagerHomeListData: Array<VillagerHomeData>;
   onClickVillager: (villager: VillagerHomeData) => void;
@@ -34,11 +34,16 @@ const MapWithHomeLocations = (props: Props) => {
     return null;
   }
 
-  const { mapCenterLocation, villagerHomeListData, onClickVillager,setDrawerOpen } = props;
+  const {
+    mapCenterLocation,
+    villagerHomeListData,
+    onClickVillager,
+    setDrawerOpen,
+  } = props;
   const handleClickLocation = (event: any, villager: VillagerHomeData) => {
     console.log("this is", villager);
     onClickVillager(villager);
-    setDrawerOpen(true)
+    setDrawerOpen(true);
   };
   return (
     <MapContainer
@@ -79,13 +84,16 @@ const MapWithHomeLocations = (props: Props) => {
             }}
           >
             <Popup>
-              <a
-                target="_blank"
-                rel="noopener noreferrer"
-                href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
-              >
-                ดูใน goole map
-              </a>
+              <Button size="small" color="secondary" variant='outlined'>
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
+                >
+                  {'ดูใน goole map >'}
+                </a>
+              </Button>
+
               {/* <Link
                 href={`https://www.google.com/maps/search/?api=1&query=${villager.homeLocation[0]},${villager.homeLocation[1]}`}
                 component=
