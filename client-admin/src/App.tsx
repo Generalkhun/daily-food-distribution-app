@@ -41,12 +41,14 @@ function App() {
     setIsShowOnlyWaitingVillager((prev) => !prev);
     setOpenVillagerConsole(false);
   };
-  const onClickVillager = (villager: VillagerHomeData) => {
+  const onClickVillager = (
+    villager: VillagerHomeData,
+    isFromClickLocation?: boolean
+  ) => {
     setSelectedVillagerInfo(villager);
     setOpenVillagerConsole(true);
     setMapCenterLocation(villager.homeLocation);
-
-    map && map.closePopup();
+    map && !isFromClickLocation && map.closePopup();
   };
   const handleCloseModalSetting = () => {
     setIsOpenModalSetting(false);
@@ -96,6 +98,7 @@ function App() {
               villagerHomeListData={villagerHomeListData}
               onClickVillager={onClickVillager}
               setMap={setMap}
+              isShowOnlyWaitingVillager={isShowOnlyWaitingVillager}
             />
           </Paper>
         </Grid>
