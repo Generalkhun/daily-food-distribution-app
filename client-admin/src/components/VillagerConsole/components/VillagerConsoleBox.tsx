@@ -7,9 +7,9 @@ import CardContent from "@material-ui/core/CardContent";
 import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
-import { VillagerHomeData } from "../type";
-import { Divider, FormControlLabel, Grid, Switch } from "@material-ui/core";
-import ModalConfirmStatusChange from "./ModalConfirmStatusChange";
+import { VillagerHomeData } from "../../../type";
+import { Divider, Grid } from "@material-ui/core";
+import ModalConfirmStatusChange from "../../ModalConfirmStatusChange";
 
 const useStyles = makeStyles({
   root: {
@@ -112,12 +112,6 @@ export default function VillagerConsoleBox(props: Props) {
           </Grid>
         </CardActions>
         <CardActions>
-          {/* <FormControlLabel
-            control={
-              <Switch checked={isGetFood} onChange={toggleGetFoodStatus} />
-            }
-            label="ส่งสำเร็จแล้ว"
-          /> */}
           <Button
             onClick={toggleGetFoodStatus}
             fullWidth
